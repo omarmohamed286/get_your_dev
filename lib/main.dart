@@ -9,11 +9,12 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'app/config/app_routes.dart';
 import 'app/config/app_themes.dart';
+import 'app/utils/services/developer_data_service.dart';
 import 'app/utils/services/user_data_service.dart';
+import 'view_models/developer_data_cubit/developer_data_cubit.dart';
 import 'view_models/user_data_cubit/user_data_cubit.dart';
 import 'views/screens/sign_up_screen.dart';
 import 'firebase_options.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,8 +37,13 @@ class GetYourDev extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         CacheService.getBool(Constants.isLogedKey);
-        return BlocProvider(
-          create: (context) => UserDataCubit(UserDataService.instance()),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+                create: (context) =>
+                    DeveloperDataCubit(DeveloperDataService())),
+            BlocProvider(create: (context) => UserDataCubit(UserDataService()))
+          ],
           child: MaterialApp(
               builder: (context, child) => Directionality(
                   textDirection: TextDirection.rtl, child: child!),

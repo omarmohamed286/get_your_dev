@@ -7,17 +7,21 @@ import '../../app/utils/helpers/border_helper.dart';
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
       {super.key,
-      required this.labelText,
-      required this.keyword,
+      this.labelText,
+      this.keyword,
       this.onSaved,
       this.initialValue,
-      this.onChanged});
+      this.onChanged,
+      this.maxLength,
+      this.maxLines});
 
-  final String labelText;
-  final String keyword;
+  final String? labelText;
+  final String? keyword;
   final void Function(String?)? onSaved;
   final String? initialValue;
   final void Function(String)? onChanged;
+  final int? maxLength;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +30,10 @@ class CustomTextField extends StatelessWidget {
       child: BlocBuilder<ChangePasswordIconCubit, ChangePasswordIconState>(
         builder: (context, state) {
           return TextFormField(
+            keyboardType: TextInputType.text,
             initialValue: initialValue,
+            maxLength: maxLength,
+            maxLines: keyword != 'dev' ? 1 : maxLines,
             obscureText: keyword == 'password'
                 ? BlocProvider.of<ChangePasswordIconCubit>(context).obscureText
                 : false,
@@ -46,6 +53,10 @@ class CustomTextField extends StatelessWidget {
               if (keyword == 'password') {
                 if (value?.isEmpty ?? true) {
                   return 'يجب إدخال كلمة المرور';
+                }
+              } else {
+                if (value?.isEmpty ?? true) {
+                  return 'لا يمكن لهذا الحقل أن يكون فارغاً';
                 }
               }
               return null;

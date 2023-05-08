@@ -4,15 +4,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../app/utils/constants.dart';
 
 class CustomCachedImage extends StatelessWidget {
-  const CustomCachedImage({super.key, required this.imageUrl});
+  const CustomCachedImage({super.key, required this.imageUrl,required this.width,required this.height});
 
   final String imageUrl;
+  final int width;
+  final int height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 120.w,
-      height: 135.h,
+      width: width.w,
+      height: height.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(70.r),
         color: Constants.whiteColor,

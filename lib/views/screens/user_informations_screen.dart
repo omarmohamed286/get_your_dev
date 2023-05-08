@@ -3,10 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_your_dev/app/utils/helpers/app_bar_helper.dart';
 import 'package:get_your_dev/view_models/user_data_cubit/user_data_cubit.dart';
+import 'package:get_your_dev/views/widgets/choose_image_widget.dart';
 import '../../models/user_model.dart';
-import '../widgets/custom_bottom_sheet.dart';
-import '../widgets/custom_cached_image.dart';
-import '../widgets/custom_icon_button.dart';
 
 class UserInfromationsScreen extends StatelessWidget {
   const UserInfromationsScreen({super.key});
@@ -29,31 +27,8 @@ class UserInfromationsScreen extends StatelessWidget {
               BlocProvider.of<UserDataCubit>(context).userModel;
           return ListView(padding: EdgeInsets.all(12.h), children: [
             SizedBox(height: 30.h),
-            Center(
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  CustomCachedImage(imageUrl: userModel!.image),
-                  Positioned(
-                    top: 100.h,
-                    child: CircleAvatar(
-                        child: CustomIconButton(
-                      icon: Icons.add_a_photo,
-                      iconRadius: 50,
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return CustomBottomSheet(
-                              defaultImage: userModel.image,
-                            );
-                          },
-                        );
-                      },
-                    )),
-                  )
-                ],
-              ),
+            ChooseImageWiget(
+              userModel: userModel!,
             ),
             SizedBox(height: 30.h),
             ListTile(

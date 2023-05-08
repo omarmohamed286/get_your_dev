@@ -90,7 +90,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             fontSize: 32.sp, color: Constants.blackColor),
                       ),
                       SizedBox(width: 30.w),
-                      const CustomDropDownButton(),
+                      const CustomDropDownButton(
+                        keyword: 'signup',
+                      ),
                     ],
                   ),
                   Row(
@@ -119,7 +121,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               username: username!.trim(),
                               email: email!.trim(),
                               role: BlocProvider.of<DropDownCubit>(context)
-                                  .dropDownValue),
+                                  .signupDropDownValue),
                         );
                         Navigator.pushReplacementNamed(context, HomeScreen.id);
                         CacheService.setBool(Constants.isLogedKey, true);

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_your_dev/app/utils/services/user_data_service.dart';
-import 'package:get_your_dev/view_models/user_data_cubit/user_data_cubit.dart';
 import 'package:get_your_dev/views/screens/add_developer_screen.dart';
+import 'package:get_your_dev/views/screens/developer_details_screen.dart';
 import 'package:get_your_dev/views/screens/home_screen.dart';
 import 'package:get_your_dev/views/screens/settings_screen.dart';
 import 'package:get_your_dev/views/screens/sign_in_screen.dart';
@@ -20,6 +18,8 @@ class AppRoutes {
     SettingsScreen.id: (context) => const SettingsScreen(),
     EditInfoScreen.id: (context) => const EditInfoScreen(),
     ResetPasswordScreen.id: (context) => const ResetPasswordScreen(),
-    AddDeveloperScreen.id: (context) => const AddDeveloperScreen()
+    AddDeveloperScreen.id: (context) => const AddDeveloperScreen(),
+    DeveloperDetailsScreen.id: (context) => const DeveloperDetailsScreen(),
+
   };
 }

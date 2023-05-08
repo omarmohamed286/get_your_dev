@@ -1,13 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get_your_dev/app/repositories/user_data_repository.dart';
 import 'package:meta/meta.dart';
-import '../../app/utils/services/user_data_service.dart';
 import '../../models/user_model.dart';
 part 'user_data_state.dart';
 
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(this.user) : super(UserDataInitial());
-  UserDataService user;
+  UserDataRepository user;
 
   UserModel? userModel;
 
