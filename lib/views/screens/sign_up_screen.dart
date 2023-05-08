@@ -13,14 +13,13 @@ import 'package:get_your_dev/views/screens/sign_in_screen.dart';
 import 'package:get_your_dev/views/widgets/custom_text_field.dart';
 import '../../app/utils/services/auth_service.dart';
 import '../../app/utils/services/cache_service.dart';
-import '../../app/utils/services/user_data_service.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_drop_down_button.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
-  static String id = 'signUp';
+  static const id = 'signUp';
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();

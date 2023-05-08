@@ -11,7 +11,7 @@ import '../widgets/custom_icon_button.dart';
 class UserInfromationsScreen extends StatelessWidget {
   const UserInfromationsScreen({super.key});
 
-  static String id = 'userInformationsScreen';
+  static const id = 'userInformationsScreen';
 
   @override
   Widget build(BuildContext context) {

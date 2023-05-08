@@ -9,7 +9,7 @@ import 'package:get_your_dev/views/widgets/custom_text_field.dart';
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
 
-  static String id = 'resetPasswordScreen';
+  static const id = 'resetPasswordScreen';
 
   @override
   State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();

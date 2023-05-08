@@ -11,7 +11,7 @@ import '../widgets/custom_text_field.dart';
 class EditInfoScreen extends StatefulWidget {
   const EditInfoScreen({super.key});
 
-  static String id = 'editInfoScreen';
+  static const id = 'editInfoScreen';
 
   @override
   State<EditInfoScreen> createState() => _EditInfoScreenState();

@@ -9,7 +9,7 @@ import '../../models/user_model.dart';
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
-  static String id = 'settingsScreen';
+  static const id = 'settingsScreen';
 
   @override
   Widget build(BuildContext context) {
