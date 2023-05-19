@@ -42,6 +42,11 @@ class _ContactsScreenState extends State<ContactsScreen> {
           }
         },
         builder: (context, state) {
+          if (contactsList.isEmpty) {
+            return const Center(
+              child: Text('لا يوجد لديك محادثات حتي الآن!'),
+            );
+          }
           return state is ContactsDataLoading
               ? const Center(child: CircularProgressIndicator())
               : ListView.builder(
