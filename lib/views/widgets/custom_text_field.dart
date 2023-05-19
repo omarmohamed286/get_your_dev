@@ -13,7 +13,10 @@ class CustomTextField extends StatelessWidget {
       this.initialValue,
       this.onChanged,
       this.maxLength,
-      this.maxLines});
+      this.maxLines,
+      this.prefixIcon,
+      this.onFieldSubmitted,
+      this.controller});
 
   final String? labelText;
   final String? keyword;
@@ -22,6 +25,9 @@ class CustomTextField extends StatelessWidget {
   final void Function(String)? onChanged;
   final int? maxLength;
   final int? maxLines;
+  final IconButton? prefixIcon;
+  final void Function(String)? onFieldSubmitted;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +36,8 @@ class CustomTextField extends StatelessWidget {
       child: BlocBuilder<ChangePasswordIconCubit, ChangePasswordIconState>(
         builder: (context, state) {
           return TextFormField(
+            onEditingComplete: () {},
+            controller: controller,
             keyboardType: TextInputType.text,
             initialValue: initialValue,
             maxLength: maxLength,
@@ -39,6 +47,7 @@ class CustomTextField extends StatelessWidget {
                 : false,
             onSaved: onSaved,
             onChanged: onChanged,
+            onFieldSubmitted: onFieldSubmitted,
             validator: (value) {
               if (keyword == 'username') {
                 if (value?.isEmpty ?? true) {
@@ -63,6 +72,7 @@ class CustomTextField extends StatelessWidget {
             },
             cursorColor: Constants.blackColor,
             decoration: InputDecoration(
+                prefixIcon: prefixIcon,
                 suffixIcon: keyword == 'password'
                     ? IconButton(
                         icon: Icon(

@@ -16,6 +16,7 @@ import 'view_models/user_data_cubit/user_data_cubit.dart';
 import 'views/screens/sign_up_screen.dart';
 import 'firebase_options.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(

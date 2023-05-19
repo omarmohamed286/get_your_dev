@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_your_dev/app/utils/constants.dart';
 import 'package:get_your_dev/app/utils/helpers/dialog_helper.dart';
+import 'package:get_your_dev/view_models/developer_data_cubit/developer_data_cubit.dart';
 import 'package:get_your_dev/view_models/user_data_cubit/user_data_cubit.dart';
 
 class CustomBottomSheet extends StatefulWidget {
@@ -26,7 +27,9 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
         }
       },
       builder: (context, state) {
-        UserDataCubit cubit = BlocProvider.of<UserDataCubit>(context);
+        UserDataCubit usersCubit = BlocProvider.of<UserDataCubit>(context);
+        DeveloperDataCubit developersCubit =
+            BlocProvider.of<DeveloperDataCubit>(context);
         return Container(
           height: 130.h,
           padding: EdgeInsets.all(32.h),
@@ -37,10 +40,15 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
               InkWell(
                 onTap: () async {
                   Navigator.pop(context);
-                  pickedImage = await cubit.uploadUserImage(source: 'gallery');
-                  cubit.updateUser(
-                      key: 'camera', value: pickedImage ?? widget.defaultImage);
-                  cubit.getUser();
+                  pickedImage =
+                      await usersCubit.uploadUserImage(source: 'gallery');
+                  if (pickedImage != null) {
+                    usersCubit.updateUser(key: 'camera', value: pickedImage!);
+                    developersCubit.updateDeveloper(
+                        key: 'image', value: pickedImage!);
+                    usersCubit.getUser();
+                    developersCubit.getDevelopers();
+                  }
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -56,10 +64,15 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
               InkWell(
                 onTap: () async {
                   Navigator.pop(context);
-                  pickedImage = await cubit.uploadUserImage(source: 'camera');
-                  cubit.updateUser(
-                      key: 'camera', value: pickedImage ?? widget.defaultImage);
-                  cubit.getUser();
+                  pickedImage =
+                      await usersCubit.uploadUserImage(source: 'camera');
+                  if (pickedImage != null) {
+                    usersCubit.updateUser(key: 'camera', value: pickedImage!);
+                    developersCubit.updateDeveloper(
+                        key: 'image', value: pickedImage!);
+                    usersCubit.getUser();
+                    developersCubit.getDevelopers();
+                  }
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

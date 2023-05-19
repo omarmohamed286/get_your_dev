@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_your_dev/app/utils/helpers/app_bar_helper.dart';
 import 'package:get_your_dev/app/utils/helpers/dialog_helper.dart';
 import 'package:get_your_dev/app/utils/helpers/snack_bar_helper.dart';
+import 'package:get_your_dev/view_models/developer_data_cubit/developer_data_cubit.dart';
 import 'package:get_your_dev/view_models/user_data_cubit/user_data_cubit.dart';
 import 'package:get_your_dev/views/widgets/custom_button.dart';
 import '../widgets/custom_text_field.dart';
@@ -28,6 +29,7 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
       listener: (context, state) {
         if (state is UserDataUpdateSuccess) {
           BlocProvider.of<UserDataCubit>(context).getUser();
+          BlocProvider.of<DeveloperDataCubit>(context).getDevelopers();
           Navigator.pop(context);
           showSnackBar(
               context: context,
@@ -68,11 +70,18 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
                             title: '!هل أنت متأكد',
                             description: 'هل أنت متأكد أنك تريد إتمام التغيير؟',
                             onOkPress: () {
-                              BlocProvider.of<UserDataCubit>(context)
-                                  .updateUser(
-                                      key: arguments['field']!,
-                                      value: valueAfterEditing ??
-                                          arguments['value']!);
+                              if (valueAfterEditing != null) {
+                                BlocProvider.of<UserDataCubit>(context)
+                                    .updateUser(
+                                        key: arguments['field']!,
+                                        value: valueAfterEditing!);
+                              }
+                              if (arguments['field'] == 'اسم المستخدم' &&
+                                  valueAfterEditing != null) {
+                                BlocProvider.of<DeveloperDataCubit>(context)
+                                    .updateDeveloper(
+                                        key: 'name', value: valueAfterEditing!);
+                              }
                             },
                           ).show();
                         }),

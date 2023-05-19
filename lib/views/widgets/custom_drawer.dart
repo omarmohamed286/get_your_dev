@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get_your_dev/view_models/user_data_cubit/user_data_cubit.dart';
 import 'package:get_your_dev/views/screens/add_developer_screen.dart';
+import 'package:get_your_dev/views/screens/contacts_screen.dart';
 import 'package:get_your_dev/views/screens/settings_screen.dart';
 import '../../app/utils/constants.dart';
 import '../../app/utils/helpers/dialog_helper.dart';
@@ -35,6 +36,13 @@ class CustomDrawer extends StatelessWidget {
             icon: Icons.person,
             onTap: () {
               Navigator.pushNamed(context, UserInfromationsScreen.id);
+            },
+          ),
+          CustomCard(
+            title: 'المحادثات',
+            icon: Icons.chat,
+            onTap: () {
+              Navigator.pushNamed(context, ContactsScreen.id);
             },
           ),
           CustomCard(

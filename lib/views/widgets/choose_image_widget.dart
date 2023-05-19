@@ -19,7 +19,7 @@ class ChooseImageWiget extends StatelessWidget {
         children: [
           CustomCachedImage(
             imageUrl: userModel!.image,
-            width: 125,
+            width: 120,
             height: 130,
           ),
           Positioned(

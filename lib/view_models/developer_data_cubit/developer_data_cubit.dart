@@ -12,6 +12,8 @@ class DeveloperDataCubit extends Cubit<DeveloperDataState> {
   List<DeveloperModel> developersList = [];
   DeveloperModel? developerModel;
 
+  String? developerToken;
+
   Future<void> addDeveloper(DeveloperModel developerModel) async {
     emit(DeveloperAddingLoading());
     try {
@@ -40,5 +42,16 @@ class DeveloperDataCubit extends Cubit<DeveloperDataState> {
     } catch (e) {
       emit(CurrentDeveloperFailure());
     }
+  }
+
+  Future<void> updateDeveloper(
+      {required String key, required String value}) async {
+    await dev
+        .updateDeveloper(key: key, value: value)
+        .catchError((onError) => debugPrint(onError));
+  }
+
+  Future<void> getDeveloperToken() async {
+    developerToken = await dev.getDeveloperToken();
   }
 }

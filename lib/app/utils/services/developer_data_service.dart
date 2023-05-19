@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get_your_dev/app/repositories/developer_data_repository.dart';
 import 'package:get_your_dev/models/developer_model.dart';
 import '../constants.dart';
@@ -32,5 +33,19 @@ class DeveloperDataService extends DeveloperDataRepository {
       developerModel = DeveloperModel.fromJson(value.data());
     });
     return developerModel;
+  }
+
+  @override
+  Future<void> updateDeveloper(
+      {required String key, required String value}) async {
+    await developers.doc(user?.uid).update({key: value});
+  }
+
+  @override
+  Future<String?> getDeveloperToken() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    String? token = await messaging.getToken();
+    await developers.doc(user?.uid).set({'token': token});
+    return token;
   }
 }

@@ -13,9 +13,7 @@ import 'custom_drop_down_button.dart';
 import 'custom_text_field.dart';
 
 class NewDeveloperForm extends StatefulWidget {
-  const NewDeveloperForm({super.key, required this.state});
-
-  final DeveloperDataState state;
+  const NewDeveloperForm({super.key});
 
   @override
   State<NewDeveloperForm> createState() => _NewDeveloperFormState();
@@ -31,9 +29,14 @@ class _NewDeveloperFormState extends State<NewDeveloperForm> {
   final GlobalKey<FormState> formsKey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    BlocProvider.of<DeveloperDataCubit>(context).getDeveloperToken();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     UserModel? userModel = BlocProvider.of<UserDataCubit>(context).userModel;
-
     return Form(
       key: formsKey,
       child: ListView(
@@ -84,24 +87,33 @@ class _NewDeveloperFormState extends State<NewDeveloperForm> {
             text: 'إذهب لصفحة معلومات المستخدم لتعديلهما',
           ),
           SizedBox(height: 10.h),
-          widget.state is DeveloperAddingLoading
-              ? const LinearProgressIndicator()
-              : CustomButton(
-                  text: 'تأكيد المعلومات',
-                  onPressed: () {
-                    if (formsKey.currentState!.validate()) {
-                      formsKey.currentState!.save();
-                      BlocProvider.of<DeveloperDataCubit>(context).addDeveloper(
-                          DeveloperModel(
-                              userModel!.image,
-                              userModel.username,
-                              BlocProvider.of<DropDownCubit>(context)
-                                  .developerDropDownValue,
-                              shortDesc!,
-                              longDesc!,
-                              'pending'));
-                    }
-                  })
+          BlocBuilder<DeveloperDataCubit, DeveloperDataState>(
+            builder: (context, state) {
+              return state is DeveloperAddingLoading
+                  ? const LinearProgressIndicator()
+                  : CustomButton(
+                      text: 'تأكيد المعلومات',
+                      onPressed: () {
+                        if (formsKey.currentState!.validate()) {
+                          formsKey.currentState!.save();
+                          String? token =
+                              BlocProvider.of<DeveloperDataCubit>(context)
+                                  .developerToken;
+                          BlocProvider.of<DeveloperDataCubit>(context)
+                              .addDeveloper(DeveloperModel(
+                                  userModel!.image,
+                                  userModel.username,
+                                  BlocProvider.of<DropDownCubit>(context)
+                                      .developerDropDownValue,
+                                  shortDesc!,
+                                  longDesc!,
+                                  'pending',
+                                  token!,
+                                  userModel.email));
+                        }
+                      });
+            },
+          )
         ],
       ),
     );
