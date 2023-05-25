@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_your_dev/models/user_model.dart';
-
 import 'custom_bottom_sheet.dart';
 import 'custom_cached_image.dart';
 import 'custom_icon_button.dart';

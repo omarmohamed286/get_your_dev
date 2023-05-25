@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_your_dev/models/user_model.dart';
-import 'package:get_your_dev/view_models/chat_cubit/chat_cubit.dart';
 import 'package:get_your_dev/view_models/user_data_cubit/user_data_cubit.dart';
 import 'package:get_your_dev/views/screens/chat_screen.dart';
 import 'package:get_your_dev/views/screens/developer_details_screen.dart';
@@ -22,8 +21,7 @@ class DeveloperCard extends StatelessWidget {
       if (currentUser!.email != developerModel.email) {
         isVisible = true;
       }
-      return SizedBox(
-          child: Card(
+      return Card(
         elevation: 5,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.r),
@@ -35,7 +33,7 @@ class DeveloperCard extends StatelessWidget {
               Row(
                 children: [
                   CustomCachedImage(
-                      imageUrl: developerModel.image, width: 90, height: 100),
+                      imageUrl: developerModel.image, width: 80, height: 100),
                   SizedBox(width: 28.w),
                   Column(
                     mainAxisSize: MainAxisSize.min,
@@ -75,7 +73,7 @@ class DeveloperCard extends StatelessWidget {
             ],
           ),
         ),
-      ));
+      );
     });
   }
 }

@@ -60,6 +60,7 @@ class _NewDeveloperFormState extends State<NewDeveloperForm> {
           SizedBox(height: 5.h),
           CustomTextField(
             maxLength: 50,
+            textInputAction: TextInputAction.next,
             onChanged: (value) {
               shortDesc = value;
             },
@@ -72,6 +73,7 @@ class _NewDeveloperFormState extends State<NewDeveloperForm> {
           SizedBox(height: 5.h),
           CustomTextField(
             maxLines: 4,
+            textInputType: TextInputType.multiline,
             keyword: 'dev',
             onChanged: (value) {
               longDesc = value;

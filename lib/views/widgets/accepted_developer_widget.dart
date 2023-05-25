@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_your_dev/models/developer_model.dart';
 import 'package:get_your_dev/views/widgets/developer_card.dart';
-
 import '../../view_models/drop_down_cubit/drop_down_cubit.dart';
 import 'custom_button.dart';
 import 'new_developer_form.dart';

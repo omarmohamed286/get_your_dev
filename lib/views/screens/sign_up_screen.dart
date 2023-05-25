@@ -61,6 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   CustomTextField(
                     labelText: 'اسم المستخدم',
                     keyword: 'username',
+                    textInputAction: TextInputAction.next,
                     onSaved: (value) {
                       username = value;
                     },
@@ -69,6 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   CustomTextField(
                     labelText: 'البريد الإلكتروني',
                     keyword: 'email',
+                    textInputAction: TextInputAction.next,
                     onSaved: (value) {
                       email = value;
                     },
@@ -76,6 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(height: 20.h),
                   CustomTextField(
                     labelText: 'كلمة المرور',
+                    textInputAction: TextInputAction.done,
                     keyword: 'password',
                     onSaved: (value) {
                       password = value;

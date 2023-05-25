@@ -5,7 +5,7 @@ import '../../app/utils/constants.dart';
 import '../../app/utils/helpers/border_helper.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField(
+  CustomTextField(
       {super.key,
       this.labelText,
       this.keyword,
@@ -16,7 +16,9 @@ class CustomTextField extends StatelessWidget {
       this.maxLines,
       this.prefixIcon,
       this.onFieldSubmitted,
-      this.controller});
+      this.controller,
+      this.textInputAction,
+      this.textInputType});
 
   final String? labelText;
   final String? keyword;
@@ -28,6 +30,8 @@ class CustomTextField extends StatelessWidget {
   final IconButton? prefixIcon;
   final void Function(String)? onFieldSubmitted;
   final TextEditingController? controller;
+  final TextInputAction? textInputAction;
+  final TextInputType? textInputType;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +40,9 @@ class CustomTextField extends StatelessWidget {
       child: BlocBuilder<ChangePasswordIconCubit, ChangePasswordIconState>(
         builder: (context, state) {
           return TextFormField(
-            onEditingComplete: () {},
+            textInputAction: textInputAction,
             controller: controller,
-            keyboardType: TextInputType.text,
+            keyboardType: textInputType,
             initialValue: initialValue,
             maxLength: maxLength,
             maxLines: keyword != 'dev' ? 1 : maxLines,

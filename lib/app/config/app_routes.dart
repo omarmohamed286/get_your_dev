@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_your_dev/app/utils/services/chat_service.dart';
 import 'package:get_your_dev/app/utils/services/notifications_service.dart';
 import 'package:get_your_dev/view_models/chat_cubit/chat_cubit.dart';
 import 'package:get_your_dev/view_models/notifications_cubit/notifications_cubit.dart';
@@ -20,23 +19,23 @@ class AppRoutes {
   static Map<String, Widget Function(BuildContext)> routes = {
     SignUpScreen.id: (context) => const SignUpScreen(),
     SignInScreen.id: (context) => const SignInScreen(),
-    HomeScreen.id: (context) => BlocProvider(
-        create: (context) => ChatCubit(ChatService()),
-        child: const HomeScreen()),
+    HomeScreen.id: (context) => const HomeScreen(),
     UserInfromationsScreen.id: (context) => const UserInfromationsScreen(),
     SettingsScreen.id: (context) => const SettingsScreen(),
     EditInfoScreen.id: (context) => const EditInfoScreen(),
     ResetPasswordScreen.id: (context) => const ResetPasswordScreen(),
     AddDeveloperScreen.id: (context) => BlocProvider(
-        create: (context) => NotificationsCubit(NotifiactionsService()),
-        child: const AddDeveloperScreen()),
+          create: (context) => NotificationsCubit(NotifiactionsService()),
+          child: const AddDeveloperScreen(),
+        ),
     DeveloperDetailsScreen.id: (context) => const DeveloperDetailsScreen(),
     ChatScreen.id: (context) => BlocProvider(
-          create: (context) => ChatCubit(ChatService()),
+          create: (context) => ChatCubit(),
           child: const ChatScreen(),
         ),
     ContactsScreen.id: (context) => BlocProvider(
-        create: (context) => ChatCubit(ChatService()),
-        child: const ContactsScreen()),
+          create: (context) => ChatCubit(),
+          child: const ContactsScreen(),
+        ),
   };
 }

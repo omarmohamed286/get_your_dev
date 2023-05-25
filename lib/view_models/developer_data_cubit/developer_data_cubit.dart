@@ -11,7 +11,6 @@ class DeveloperDataCubit extends Cubit<DeveloperDataState> {
 
   List<DeveloperModel> developersList = [];
   DeveloperModel? developerModel;
-
   String? developerToken;
 
   Future<void> addDeveloper(DeveloperModel developerModel) async {

@@ -42,25 +42,24 @@ class _ContactsScreenState extends State<ContactsScreen> {
           }
         },
         builder: (context, state) {
-          if (contactsList.isEmpty) {
-            return const Center(
-              child: Text('لا يوجد لديك محادثات حتي الآن!'),
-            );
+          if (state is ContactsDataLoading) {
+            return const Center(child: CircularProgressIndicator());
           }
-          return state is ContactsDataLoading
-              ? const Center(child: CircularProgressIndicator())
-              : ListView.builder(
-                  itemCount: contactsList.length,
-                  itemBuilder: (context, i) {
-                    return ContactCard(
-                      contactModel: contactsList[i],
-                      onTap: () {
-                        Navigator.pushNamed(context, ChatScreen.id,
-                            arguments: contactsList[i]);
-                      },
-                    );
-                  },
-                );
+          if (contactsList.isEmpty) {
+            return const Center(child: Text('لا يوجد لديك محادثات حتي الآن!'));
+          }
+          return ListView.builder(
+            itemCount: contactsList.length,
+            itemBuilder: (context, i) {
+              return ContactCard(
+                contactModel: contactsList[i],
+                onTap: () {
+                  Navigator.pushNamed(context, ChatScreen.id,
+                      arguments: contactsList[i]);
+                },
+              );
+            },
+          );
         },
       ),
     );

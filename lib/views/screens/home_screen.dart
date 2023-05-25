@@ -3,16 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_your_dev/app/utils/helpers/dialog_helper.dart';
-import 'package:get_your_dev/app/utils/services/chat_service.dart';
 import 'package:get_your_dev/models/developer_model.dart';
-import 'package:get_your_dev/view_models/notifications_cubit/notifications_cubit.dart';
 import 'package:get_your_dev/view_models/developer_data_cubit/developer_data_cubit.dart';
 import 'package:get_your_dev/view_models/user_data_cubit/user_data_cubit.dart';
 import 'package:get_your_dev/views/screens/add_developer_screen.dart';
 import 'package:get_your_dev/views/widgets/custom_drawer.dart';
 import '../../app/utils/helpers/app_bar_helper.dart';
-import '../../models/message_model.dart';
-import '../../view_models/chat_cubit/chat_cubit.dart';
 import '../widgets/clickable_text.dart';
 import '../widgets/developer_card.dart';
 
@@ -26,7 +22,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   void initState() {
     BlocProvider.of<UserDataCubit>(context).getUser();
@@ -82,6 +77,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           : SizedBox(
                               height: 370.h,
                               child: ListView.builder(
+                                physics: const BouncingScrollPhysics(
+                                    decelerationRate:
+                                        ScrollDecelerationRate.fast),
                                 shrinkWrap: true,
                                 itemCount: devList.length,
                                 itemBuilder: (context, index) {

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_your_dev/app/utils/constants.dart';
 import 'package:get_your_dev/models/contact_model.dart';
-import 'package:get_your_dev/view_models/chat_cubit/chat_cubit.dart';
-
 import 'custom_cached_image.dart';
 
 class ContactCard extends StatelessWidget {
@@ -13,7 +10,6 @@ class ContactCard extends StatelessWidget {
 
   final ContactModel contactModel;
   final VoidCallback onTap;
-
   @override
   Widget build(BuildContext context) {
     return InkWell(

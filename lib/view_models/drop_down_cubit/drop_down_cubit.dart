@@ -33,6 +33,7 @@ class DropDownCubit extends Cubit<DropDownState> {
 
   void setDeveloperDropDownValue(value) {
     developerDropDownValue = value;
+    print(developerDropDownValue);
     emit(DropDownInitial());
   }
 }

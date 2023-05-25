@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_your_dev/app/utils/constants.dart';
 import 'package:get_your_dev/app/utils/services/cache_service.dart';
-import 'package:get_your_dev/bloc_observer.dart';
 import 'package:get_your_dev/views/screens/home_screen.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,7 +22,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await CacheService.initPrefs();
-  Bloc.observer = AppBlocObserver();
   runApp(Phoenix(child: const GetYourDev()));
 }
 

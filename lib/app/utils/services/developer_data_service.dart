@@ -48,4 +48,5 @@ class DeveloperDataService extends DeveloperDataRepository {
     await developers.doc(user?.uid).set({'token': token});
     return token;
   }
+
 }

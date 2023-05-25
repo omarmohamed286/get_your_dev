@@ -51,6 +51,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 CustomTextField(
                   labelText: 'البريد الإلكتروني',
                   keyword: 'email',
+                  textInputAction: TextInputAction.next,
                   onSaved: (value) {
                     email = value;
                   },
@@ -59,6 +60,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 CustomTextField(
                   labelText: 'كلمة المرور',
                   keyword: 'password',
+                  textInputAction: TextInputAction.done,
                   onSaved: (value) {
                     password = value;
                   },

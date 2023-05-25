@@ -3,11 +3,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_your_dev/app/utils/helpers/app_bar_helper.dart';
 import 'package:get_your_dev/models/developer_model.dart';
 import '../widgets/custom_cached_image.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DeveloperDetailsScreen extends StatelessWidget {
   const DeveloperDetailsScreen({super.key});
 
   static const id = 'developerDetailsScreen';
+
+  Future<void> _launchUrl(String _url) async {
+    if (!await launchUrl(
+      Uri.parse(_url),
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $_url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +47,13 @@ class DeveloperDetailsScreen extends StatelessWidget {
           ),
           Text(developerModel.shortDescription),
           SizedBox(height: 24.h),
-          Text(
-            developerModel.longDescription,
+          Linkify(
+            onOpen: (link) async {
+              await _launchUrl(link.url);
+            },
+            text: developerModel.longDescription,
             style: TextStyle(fontSize: 28.sp),
-          ),
+          )
         ],
       ),
     );
