@@ -44,61 +44,61 @@ class _ChatScreenState extends State<ChatScreen> {
                     data[i].data() as Map<String, dynamic>));
               }
               return Column(
-                      children: [
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: messagesList.length,
-                            reverse: true,
-                            controller: scrollController,
-                            itemBuilder: (context, i) {
-                              return messagesList[i].id == userModel.email
-                                  ? FirstUserMessage(
-                                      messageModel: messagesList[i])
-                                  : SecondUserMessage(
-                                      messageModel: messagesList[i]);
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(8.h),
-                          child: CustomTextField(
-                            controller: myController,
-                            prefixIcon: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.send),
-                            ),
-                            onFieldSubmitted: (value) {
-                              message = value;
-                              if (messagesList.isEmpty) {
-                                BlocProvider.of<ChatCubit>(context)
-                                    .addUserToContactList(
-                                        firstUserContact: ContactModel(
-                                            email: model.email,
-                                            image: model.image,
-                                            username: model.name),
-                                        secondUserContact: ContactModel(
-                                            email: userModel.email,
-                                            image: userModel.image,
-                                            username: userModel.username));
-                              }
-                              if (message != null) {
-                                messagesList.clear();
-                                BlocProvider.of<ChatCubit>(context).sendMessage(
-                                    message: MessageModel(
-                                        message: message!, id: userModel.email),
-                                    firstUser: userModel.email,
-                                    secondUser: model.email);
-                                myController.clear();
-                                scrollController.animateTo(
-                                    scrollController.position.minScrollExtent,
-                                    duration: const Duration(seconds: 1),
-                                    curve: Curves.bounceInOut);
-                              }
-                            },
-                          ),
-                        ),
-                      ],
-                    );
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: messagesList.length,
+                      reverse: true,
+                      controller: scrollController,
+                      itemBuilder: (context, i) {
+                        return messagesList[i].id == userModel.email
+                            ? FirstUserMessage(messageModel: messagesList[i])
+                            : SecondUserMessage(messageModel: messagesList[i]);
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.h),
+                    child: CustomTextField(
+                      controller: myController,
+                      textInputType: TextInputType.multiline,
+                      prefixIcon: IconButton(
+                        onPressed: () {
+                          if (messagesList.isEmpty) {
+                            BlocProvider.of<ChatCubit>(context)
+                                .addUserToContactList(
+                                    firstUserContact: ContactModel(
+                                        email: model.email,
+                                        image: model.image,
+                                        username: model.name),
+                                    secondUserContact: ContactModel(
+                                        email: userModel.email,
+                                        image: userModel.image,
+                                        username: userModel.username));
+                          }
+                          if (message != null) {
+                            messagesList.clear();
+                            BlocProvider.of<ChatCubit>(context).sendMessage(
+                                message: MessageModel(
+                                    message: message!, id: userModel.email),
+                                firstUser: userModel.email,
+                                secondUser: model.email);
+                            myController.clear();
+                            scrollController.animateTo(
+                                scrollController.position.minScrollExtent,
+                                duration: const Duration(seconds: 1),
+                                curve: Curves.bounceInOut);
+                          }
+                        },
+                        icon: const Icon(Icons.send),
+                      ),
+                      onChanged: (value) {
+                        message = value;
+                      },
+                    ),
+                  ),
+                ],
+              );
             }
             return const Center(child: CircularProgressIndicator());
           },

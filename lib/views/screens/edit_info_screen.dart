@@ -65,6 +65,9 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
                     : CustomButton(
                         text: 'تأكيد',
                         onPressed: () {
+                          var currentDev =
+                              BlocProvider.of<DeveloperDataCubit>(context)
+                                  .developerModel;
                           customInfoDialog(
                             context: context,
                             title: '!هل أنت متأكد',
@@ -75,9 +78,9 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
                                     .updateUser(
                                         key: arguments['field']!,
                                         value: valueAfterEditing!);
-                              }
-                              if (arguments['field'] == 'اسم المستخدم' &&
-                                  valueAfterEditing != null) {
+                              } else if (arguments['field'] == 'اسم المستخدم' &&
+                                  valueAfterEditing != null &&
+                                  currentDev != null) {
                                 BlocProvider.of<DeveloperDataCubit>(context)
                                     .updateDeveloper(
                                         key: 'name', value: valueAfterEditing!);
