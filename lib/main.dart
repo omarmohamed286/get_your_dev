@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_your_dev/app/utils/constants.dart';
-import 'package:get_your_dev/app/utils/services/cache_service.dart';
-import 'package:get_your_dev/views/screens/home_screen.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'app/config/app_routes.dart';
-import 'app/config/app_themes.dart';
-import 'app/utils/services/developer_data_service.dart';
-import 'app/utils/services/user_data_service.dart';
-import 'view_models/developer_data_cubit/developer_data_cubit.dart';
-import 'view_models/user_data_cubit/user_data_cubit.dart';
-import 'views/screens/sign_up_screen.dart';
+import 'package:get_your_dev/core/constants.dart';
+import 'package:get_your_dev/core/utils/app_router.dart';
+import 'package:get_your_dev/core/utils/services/dependency_injection_service.dart';
+import 'package:get_your_dev/features/home/data/repos/home_repo_impl.dart';
+import 'package:get_your_dev/features/home/presentation/view_model/user_data_cubit/user_data_cubit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'core/utils/services/cache_service.dart';
 import 'firebase_options.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +18,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await CacheService.initPrefs();
+  setupDependencies();
   runApp(Phoenix(child: const GetYourDev()));
 }
 
@@ -35,24 +32,19 @@ class GetYourDev extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        CacheService.getBool(Constants.isLogedKey);
-        return MultiBlocProvider(
-          providers: [
-            BlocProvider(
-                create: (context) =>
-                    DeveloperDataCubit(DeveloperDataService())),
-            BlocProvider(create: (context) => UserDataCubit(UserDataService()))
-          ],
+        CacheService.getBool(kIsLogedKey);
+        return BlocProvider(
+          create: (context) => UserDataCubit(getIt.get<HomeRepoImpl>()),
           child: MaterialApp(
-              builder: (context, child) => Directionality(
-                  textDirection: TextDirection.rtl, child: child!),
-              debugShowCheckedModeBanner: false,
-              title: Constants.appTitle,
-              theme: getAppTheme(),
-              initialRoute: CacheService.isLoged ?? false
-                  ? HomeScreen.id
-                  : SignUpScreen.id,
-              routes: AppRoutes.routes),
+            builder: (context, child) =>
+                Directionality(textDirection: TextDirection.rtl, child: child!),
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(fontFamily: GoogleFonts.tajawal().fontFamily),
+            initialRoute: CacheService.isLoged ?? false
+                ? AppRouter.kHomeView
+                : AppRouter.kSignupView,
+            routes: AppRouter.routes,
+          ),
         );
       },
     );
