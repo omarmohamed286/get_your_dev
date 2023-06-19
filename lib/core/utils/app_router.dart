@@ -5,6 +5,9 @@ import 'package:get_your_dev/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:get_your_dev/features/auth/presentation/view_model/drop_down_button_cubit/drop_down_button_cubit.dart';
 import 'package:get_your_dev/features/auth/presentation/views/reset_password_view.dart';
 import 'package:get_your_dev/features/auth/presentation/views/signup_view.dart';
+import 'package:get_your_dev/features/home/presentation/views/edit_email_view.dart';
+import 'package:get_your_dev/features/home/presentation/views/edit_password_view.dart';
+import 'package:get_your_dev/features/home/presentation/views/edit_username_view.dart';
 import '../../features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import '../../features/auth/presentation/view_model/change_password_icon_cubit/change_password_icon_cubit.dart';
 import '../../features/auth/presentation/views/signin_view.dart';
@@ -19,6 +22,9 @@ class AppRouter {
   static const kAddDeveloperView = '/addDeveloperView';
   static const kUserInformationsView = '/userInformationsView';
   static const kResetPasswordView = '/resetPasswordView';
+  static const kEditUsernameView = '/editUsernameView';
+  static const kEditEmailView = '/editEmailView';
+  static const kEditPasswordView = '/editPasswordView';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     kSignupView: (context) => MultiBlocProvider(providers: [
@@ -46,5 +52,8 @@ class AppRouter {
     kResetPasswordView: (context) => BlocProvider(
         create: (context) => AuthCubit(getIt.get<AuthRepoImpl>()),
         child: const ResetPasswordView()),
+    kEditUsernameView: (context) => const EditUsernameView(),
+    kEditEmailView: (context) => const EditEmailView(),
+    kEditPasswordView: (context) => const EditPasswordView()
   };
 }

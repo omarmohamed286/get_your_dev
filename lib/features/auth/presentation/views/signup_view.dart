@@ -83,7 +83,7 @@ class _SignupViewState extends State<SignupView> {
                       const Text('هل لديك حساب بالفعل؟'),
                       TextButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(
+                            Navigator.pushNamed(
                                 context, AppRouter.kSigninView);
                           },
                           child: const Text("تسجيل الدخول"))
@@ -95,8 +95,8 @@ class _SignupViewState extends State<SignupView> {
                       if (state is AuthSuccess) {
                         showSuccessSnackBar(
                             context: context, content: 'تم إنشاء الحساب بنجاح');
-                        addUserDataToDatabase(context);
                         CacheService.setBool(kIsLogedKey, true);
+                        addUserDataToDatabase(context);
                         Navigator.pushReplacementNamed(
                             context, AppRouter.kHomeView);
                       } else if (state is AuthFailure) {

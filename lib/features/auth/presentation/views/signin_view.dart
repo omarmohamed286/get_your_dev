@@ -73,7 +73,7 @@ class _SigninViewState extends State<SigninView> {
                             if (Navigator.canPop(context)) {
                               Navigator.pop(context);
                             } else {
-                              Navigator.pushReplacementNamed(
+                              Navigator.pushNamed(
                                   context, AppRouter.kSignupView);
                             }
                           },

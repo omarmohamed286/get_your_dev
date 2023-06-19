@@ -5,7 +5,9 @@ void showSuccessSnackBar({
   required BuildContext context,
   required String content,
 }) {
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  ScaffoldFeatureController<Widget, dynamic> _scaffold;
+
+  _scaffold = ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     content: Text(
       content,
       style: AppStyles.defaultTextStyle.copyWith(

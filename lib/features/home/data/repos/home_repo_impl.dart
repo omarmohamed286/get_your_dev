@@ -23,4 +23,26 @@ class HomeRepoImpl implements HomeRepo {
           const ServerFailure('حدث خطأ غير متوقع، يرجي المحاولة مرة اخري'));
     }
   }
+
+  @override
+  Future<Either<Failure, String?>> uploadUserImage(
+      {required String source}) async {
+    try {
+      return right(await userDataService.uploadUserImage(source: source));
+    } catch (e) {
+      return left(
+          const ServerFailure('فشل تغيير الصورة، برجاء المحاولة مرة اخري'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> updateUserData(
+      {required String key, required String value}) async {
+    try {
+      await userDataService.updateUserData(key: key, value: value);
+      return right(null);
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+  }
 }

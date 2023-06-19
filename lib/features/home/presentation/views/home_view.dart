@@ -50,7 +50,7 @@ class _HomeViewState extends State<HomeView> {
                     const SizedBox(height: 10),
                     ClickableText(
                       onTap: () {
-                        Navigator.pushReplacementNamed(
+                        Navigator.pushNamed(
                             context, AppRouter.kAddDeveloperView);
                       },
                       text: 'اعرض نفسك كـ مطور',
