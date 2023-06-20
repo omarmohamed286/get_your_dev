@@ -34,7 +34,7 @@ class _EditUsernameViewState extends State<EditUsernameView> {
             onOkPress: () {
               if (newUsername != null) {
                 BlocProvider.of<UserDataCubit>(context)
-                    .updateUserData(key: 'username', value: newUsername!);
+                    .updateUserData(key: 'username', value: newUsername!.trim());
               }
             },
           ).show();

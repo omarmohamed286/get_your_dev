@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/models/user_model.dart';
 import 'custom_bottom_sheet.dart';
 import 'custom_cached_image.dart';

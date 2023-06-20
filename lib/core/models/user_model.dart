@@ -37,16 +37,4 @@ class UserModel {
       'status': status
     };
   }
-
-  // UserModel copyWith({String? username,}) {
-  //   return UserModel(
-  //       username: username ?? this.username,
-  //       email: email,
-  //       image: image,
-  //       role: role,
-  //       field: field,
-  //       shortDescription: shortDescription,
-  //       longDescription: longDescription,
-  //       status: status);
-  // }
 }

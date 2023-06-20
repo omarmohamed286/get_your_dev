@@ -33,3 +33,13 @@ class UpdateUserDataFailure extends UserDataState {
 
   UpdateUserDataFailure(this.errMessage);
 }
+
+class DevelopersDataLoading extends UserDataState {}
+
+class DevelopersDataSuccess extends UserDataState {
+}
+
+class DevelopersDataFailure extends UserDataState {
+  final String errMessage;
+  DevelopersDataFailure(this.errMessage);
+}

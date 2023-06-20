@@ -38,7 +38,7 @@ class _EditEmailViewState extends State<EditEmailView> {
             onOkPress: () {
               if (newEmail != null) {
                 BlocProvider.of<UserDataCubit>(context)
-                    .updateUserData(key: 'email', value: newEmail!);
+                    .updateUserData(key: 'email', value: newEmail!.trim());
               }
             },
           ).show();

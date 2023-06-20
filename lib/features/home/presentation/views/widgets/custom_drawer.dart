@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import '../../../../../core/constants.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/custom_dialog.dart';
 import '../../../../../core/utils/services/cache_service.dart';
-import '../../../../../core/utils/services/user_data_service.dart';
+import '../../view_model/user_data_cubit/user_data_cubit.dart';
 import 'custom_card.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -12,18 +13,21 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String userRole = BlocProvider.of<UserDataCubit>(context).currentUser!.role;
     return Drawer(
       backgroundColor: kWhiteColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CustomCard(
-            title: 'اعرض نفسك كـ مطور',
-            icon: Icons.code,
-            onTap: () {
-              Navigator.pushNamed(context, AppRouter.kAddDeveloperView);
-            },
-          ),
+          userRole == 'مطور'
+              ? CustomCard(
+                  title: 'اعرض نفسك كـ مطور',
+                  icon: Icons.code,
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRouter.kAddDeveloperView);
+                  },
+                )
+              : const SizedBox.shrink(),
           CustomCard(
             title: 'معلومات المستخدم',
             icon: Icons.person,

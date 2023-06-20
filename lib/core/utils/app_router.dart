@@ -12,6 +12,7 @@ import '../../features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import '../../features/auth/presentation/view_model/change_password_icon_cubit/change_password_icon_cubit.dart';
 import '../../features/auth/presentation/views/signin_view.dart';
 import '../../features/home/presentation/views/add_developer_view.dart';
+import '../../features/home/presentation/views/developer_details_view.dart';
 import '../../features/home/presentation/views/home_view.dart';
 import '../../features/home/presentation/views/user_informations_view.dart';
 
@@ -25,6 +26,7 @@ class AppRouter {
   static const kEditUsernameView = '/editUsernameView';
   static const kEditEmailView = '/editEmailView';
   static const kEditPasswordView = '/editPasswordView';
+  static const kDeveloperDetailsView = '/developerDetailsView';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     kSignupView: (context) => MultiBlocProvider(providers: [
@@ -54,6 +56,7 @@ class AppRouter {
         child: const ResetPasswordView()),
     kEditUsernameView: (context) => const EditUsernameView(),
     kEditEmailView: (context) => const EditEmailView(),
-    kEditPasswordView: (context) => const EditPasswordView()
+    kEditPasswordView: (context) => const EditPasswordView(),
+    kDeveloperDetailsView: (context) => const DeveloperDetailsView()
   };
 }

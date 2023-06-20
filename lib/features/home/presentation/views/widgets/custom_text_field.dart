@@ -6,24 +6,32 @@ import '../../../../../core/constants.dart';
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
-    required this.labelText,
+    this.labelText,
     this.onChanged,
     this.initialValue,
     this.obscureText,
+    this.maxLength,
+    this.maxLines,
+    required this.textInputAction,
   });
 
-  final String labelText;
+  final String? labelText;
   final void Function(String)? onChanged;
   final String? initialValue;
   final bool? obscureText;
+  final int? maxLength;
+  final int? maxLines;
+  final TextInputAction textInputAction;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: obscureText ?? false,
+      maxLength: maxLength,
+      maxLines: maxLines ?? 1,
       initialValue: initialValue,
       onChanged: onChanged,
-      textInputAction: TextInputAction.done,
+      textInputAction: textInputAction,
       cursorColor: kBlackColor,
       decoration: InputDecoration(
         focusedBorder: customBorder(),

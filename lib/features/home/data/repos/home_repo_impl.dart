@@ -45,4 +45,14 @@ class HomeRepoImpl implements HomeRepo {
       return left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, List<UserModel>>> getAcceptedDevelopers() async {
+    try {
+      return right(await userDataService.getAcceptedDevelopers());
+    } catch (e) {
+      return left(
+          const ServerFailure('فشل جلب البيانات، برجاء المحاولة مرة اخري'));
+    }
+  }
 }

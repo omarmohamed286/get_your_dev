@@ -83,8 +83,7 @@ class _SignupViewState extends State<SignupView> {
                       const Text('هل لديك حساب بالفعل؟'),
                       TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, AppRouter.kSigninView);
+                            Navigator.pushNamed(context, AppRouter.kSigninView);
                           },
                           child: const Text("تسجيل الدخول"))
                     ],
@@ -133,15 +132,16 @@ class _SignupViewState extends State<SignupView> {
     String userRole =
         BlocProvider.of<DropDownButtonCubit>(context).signupDropDownValue;
     BlocProvider.of<UserDataCubit>(context).addUserData(
-        userModel: UserModel(
-            username: username!,
-            email: email!,
-            image:
-                'https://i.pinimg.com/originals/71/f3/51/71f3519243d136361d81df71724c60a0.png',
-            role: userRole,
-            field: null,
-            shortDescription: null,
-            longDescription: null,
-            status: null));
+      userModel: UserModel(
+          username: username!.trim(),
+          email: email!.trim(),
+          image:
+              'https://i.pinimg.com/originals/71/f3/51/71f3519243d136361d81df71724c60a0.png',
+          role: userRole,
+          field: null,
+          shortDescription: null,
+          longDescription: null,
+          status: null),
+    );
   }
 }

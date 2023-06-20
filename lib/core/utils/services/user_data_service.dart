@@ -57,4 +57,14 @@ class UserDataService {
           .update({key: value});
     }
   }
+
+  Future<List<UserModel>> getAcceptedDevelopers() async {
+    List<UserModel> developersList = [];
+    await users.where('status', isEqualTo: 'accepted').get().then((value) {
+      for (var doc in value.docs) {
+        developersList.add(UserModel.fromJson(doc.data()));
+      }
+    });
+    return developersList;
+  }
 }

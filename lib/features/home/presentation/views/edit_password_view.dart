@@ -37,7 +37,7 @@ class _EditPasswordViewState extends State<EditPasswordView> {
             onOkPress: () async {
               if (newPassword != null) {
                 await BlocProvider.of<UserDataCubit>(context)
-                    .updateUserData(key: 'password', value: newPassword!);
+                    .updateUserData(key: 'password', value: newPassword!.trim());
               }
             },
           ).show();

@@ -33,6 +33,7 @@ class EditInfoSection extends StatelessWidget {
               initialValue: oldInfo,
               onChanged: onChanged,
               obscureText: info == 'كلمة المرور',
+              textInputAction: TextInputAction.done,
             ),
             const SizedBox(height: 20),
             BlocConsumer<UserDataCubit, UserDataState>(
@@ -42,7 +43,6 @@ class EditInfoSection extends StatelessWidget {
                       context: context, content: state.errMessage);
                   Navigator.pop(context);
                 } else if (state is UpdateUserDataSuccess) {
-                  BlocProvider.of<UserDataCubit>(context).getCurrentUserData();
                   showSuccessSnackBar(
                       context: context, content: 'تم تغيير $info بنجاح');
                   Navigator.pop(context);
