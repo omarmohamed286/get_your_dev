@@ -38,7 +38,9 @@ class CustomDrawer extends StatelessWidget {
           CustomCard(
             title: 'المحادثات',
             icon: Icons.chat,
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, AppRouter.kContactsView);
+            },
           ),
           CustomCard(
             title: 'تسجيل الخروج',

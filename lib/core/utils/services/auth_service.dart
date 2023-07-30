@@ -23,4 +23,8 @@ class AuthService {
     await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
   }
 
+    String getUserUid() {
+    return FirebaseAuth.instance.currentUser!.uid;
+  }
+
 }

@@ -131,6 +131,7 @@ class _SignupViewState extends State<SignupView> {
   void addUserDataToDatabase(BuildContext context) {
     String userRole =
         BlocProvider.of<DropDownButtonCubit>(context).signupDropDownValue;
+    String userUid = BlocProvider.of<AuthCubit>(context).getUserUid();
     BlocProvider.of<UserDataCubit>(context).addUserData(
       userModel: UserModel(
           username: username!.trim(),
@@ -141,7 +142,9 @@ class _SignupViewState extends State<SignupView> {
           field: null,
           shortDescription: null,
           longDescription: null,
-          status: null),
+          status: null,
+          uId: userUid,
+         ),
     );
   }
 }

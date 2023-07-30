@@ -46,4 +46,8 @@ class AuthCubit extends Cubit<AuthState> {
       emit(SendPasswordResetEmailSuccess());
     });
   }
+
+  String getUserUid() {
+    return authRepo.getUserUid();
+  }
 }

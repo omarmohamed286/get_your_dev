@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_your_dev/core/constants.dart';
 import 'package:get_your_dev/core/models/user_model.dart';
 import 'package:get_your_dev/core/utils/app_router.dart';
 import 'package:get_your_dev/core/utils/app_styles.dart';
@@ -70,8 +69,8 @@ class DeveloperCard extends StatelessWidget {
                     visible: isVisible,
                     child: TextButton(
                         onPressed: () {
-                          // Navigator.pushNamed(context, ChatScreen.id,
-                          //     arguments: developerModel);
+                          Navigator.pushNamed(context, AppRouter.kChatView,
+                              arguments: developer);
                         },
                         child: Text('محادثة مباشرة',
                             style: AppStyles.textStyle18

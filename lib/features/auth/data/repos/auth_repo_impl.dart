@@ -55,4 +55,9 @@ class AuthRepoImpl implements AuthRepo {
           const ServerFailure('فشل إرسال الطلب، يرجي المحاولة مرة أخري'));
     }
   }
+
+  @override
+  String getUserUid() {
+    return authService.getUserUid();
+  }
 }

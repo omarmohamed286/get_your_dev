@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_your_dev/core/utils/custom_app_bar.dart';
 import 'package:get_your_dev/core/utils/custom_dialog.dart';
 import 'package:get_your_dev/features/home/presentation/view_model/user_data_cubit/user_data_cubit.dart';
-import '../../../../core/utils/custom_snack_bar.dart';
 import 'widgets/edit_info_section.dart';
 
 class EditUsernameView extends StatefulWidget {

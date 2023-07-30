@@ -5,12 +5,16 @@ import 'package:get_your_dev/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:get_your_dev/features/auth/presentation/view_model/drop_down_button_cubit/drop_down_button_cubit.dart';
 import 'package:get_your_dev/features/auth/presentation/views/reset_password_view.dart';
 import 'package:get_your_dev/features/auth/presentation/views/signup_view.dart';
+import 'package:get_your_dev/features/chat/data/repos/chat_repo_impl.dart';
+import 'package:get_your_dev/features/chat/presentation/view_model/chat_cubit/chat_cubit.dart';
+import 'package:get_your_dev/features/chat/presentation/views/contacts_view.dart';
 import 'package:get_your_dev/features/home/presentation/views/edit_email_view.dart';
 import 'package:get_your_dev/features/home/presentation/views/edit_password_view.dart';
 import 'package:get_your_dev/features/home/presentation/views/edit_username_view.dart';
 import '../../features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import '../../features/auth/presentation/view_model/change_password_icon_cubit/change_password_icon_cubit.dart';
 import '../../features/auth/presentation/views/signin_view.dart';
+import '../../features/chat/presentation/views/chat_view.dart';
 import '../../features/home/presentation/views/add_developer_view.dart';
 import '../../features/home/presentation/views/developer_details_view.dart';
 import '../../features/home/presentation/views/home_view.dart';
@@ -27,6 +31,8 @@ class AppRouter {
   static const kEditEmailView = '/editEmailView';
   static const kEditPasswordView = '/editPasswordView';
   static const kDeveloperDetailsView = '/developerDetailsView';
+  static const kChatView = '/chatView';
+  static const kContactsView = '/contactsView';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     kSignupView: (context) => MultiBlocProvider(providers: [
@@ -57,6 +63,13 @@ class AppRouter {
     kEditUsernameView: (context) => const EditUsernameView(),
     kEditEmailView: (context) => const EditEmailView(),
     kEditPasswordView: (context) => const EditPasswordView(),
-    kDeveloperDetailsView: (context) => const DeveloperDetailsView()
+    kDeveloperDetailsView: (context) => const DeveloperDetailsView(),
+    kChatView: (context) => BlocProvider(
+          create: (context) => ChatCubit(getIt.get<ChatRepoImpl>()),
+          child: const ChatView(),
+        ),
+    kContactsView: (context) => BlocProvider(
+        create: (context) => ChatCubit(getIt.get<ChatRepoImpl>()),
+        child: const ContactsView())
   };
 }
