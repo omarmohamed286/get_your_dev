@@ -55,4 +55,16 @@ class HomeRepoImpl implements HomeRepo {
           const ServerFailure('فشل جلب البيانات، برجاء المحاولة مرة اخري'));
     }
   }
+
+  @override
+  Future<Either<Failure, List<UserModel>>> getSpecificFieldDevelopers(
+      {required String field}) async {
+    try {
+      return right(
+          await userDataService.getSpecificFieldDevelopers(field: field));
+    } catch (e) {
+      return left(
+          const ServerFailure('فشل جلب البيانات، برجاء المحاولة مرة اخري'));
+    }
+  }
 }

@@ -67,4 +67,27 @@ class UserDataService {
     });
     return developersList;
   }
+
+  Future<List<UserModel>> getSpecificFieldDevelopers(
+      {required String field}) async {
+    List<UserModel> developersList = [];
+    if (field == 'الكل') {
+      await users.where('status', isEqualTo: 'accepted').get().then((value) {
+        for (var doc in value.docs) {
+          developersList.add(UserModel.fromJson(doc.data()));
+        }
+      });
+    } else {
+      await users
+          .where('status', isEqualTo: 'accepted')
+          .where('field', isEqualTo: field)
+          .get()
+          .then((value) {
+        for (var doc in value.docs) {
+          developersList.add(UserModel.fromJson(doc.data()));
+        }
+      });
+    }
+    return developersList;
+  }
 }

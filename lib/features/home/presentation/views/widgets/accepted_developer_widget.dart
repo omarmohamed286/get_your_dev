@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_your_dev/core/models/user_model.dart';
 import 'package:get_your_dev/features/home/presentation/views/widgets/new_developer_widget.dart';
-import 'package:get_your_dev/core/constants.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import 'developer_card.dart';
 

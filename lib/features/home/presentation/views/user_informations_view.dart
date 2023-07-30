@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_your_dev/core/constants.dart';
 import 'package:get_your_dev/core/utils/app_router.dart';
-import 'package:get_your_dev/core/utils/app_styles.dart';
 import 'package:get_your_dev/core/utils/custom_app_bar.dart';
 import 'package:get_your_dev/core/utils/custom_snack_bar.dart';
 import 'package:get_your_dev/core/widgets/custom_loading_indicator.dart';

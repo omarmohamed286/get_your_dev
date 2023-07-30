@@ -4,13 +4,12 @@ import 'package:get_your_dev/core/utils/custom_border.dart';
 import '../../../../../core/constants.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    super.key,
-    required this.labelText,
-    this.onSaved,
-    this.textInputAction = TextInputAction.next,
-    this.onChanged
-  });
+  const CustomTextField(
+      {super.key,
+      required this.labelText,
+      this.onSaved,
+      this.textInputAction = TextInputAction.next,
+      this.onChanged});
 
   final String labelText;
   final void Function(String?)? onSaved;
@@ -24,6 +23,7 @@ class CustomTextField extends StatelessWidget {
         if (value?.isEmpty ?? true) {
           return 'يجب إدخال $labelText';
         }
+        return null;
       },
       onSaved: onSaved,
       onChanged: onChanged,

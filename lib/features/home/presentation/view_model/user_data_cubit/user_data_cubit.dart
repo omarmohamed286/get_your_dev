@@ -68,4 +68,15 @@ class UserDataCubit extends Cubit<UserDataState> {
       emit(DevelopersDataSuccess());
     });
   }
+
+  Future<void> getSpecificFieldDevelopers({required String field}) async {
+    emit(DevelopersDataLoading());
+    var result = await homeRepo.getSpecificFieldDevelopers(field: field);
+    result.fold((failure) {
+      emit(DevelopersDataFailure(failure.errMessage));
+    }, (developers) {
+      developersList = developers;
+      emit(DevelopersDataSuccess());
+    });
+  }
 }

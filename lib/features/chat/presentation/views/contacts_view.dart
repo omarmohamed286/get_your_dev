@@ -7,8 +7,6 @@ import 'package:get_your_dev/features/chat/presentation/view_model/chat_cubit/ch
 import 'package:get_your_dev/features/chat/presentation/views/widgets/contact_card.dart';
 import 'package:get_your_dev/features/home/presentation/view_model/user_data_cubit/user_data_cubit.dart';
 import '../../../../core/models/user_model.dart';
-import '../../../../core/utils/services/dependency_injection_service.dart';
-import '../../data/repos/chat_repo_impl.dart';
 
 class ContactsView extends StatefulWidget {
   const ContactsView({super.key});

@@ -62,9 +62,4 @@ class ChatCubit extends Cubit<ChatState> {
         firstUser: firstUser, secondUser: secondUser);
   }
 
-  @override
-  void onChange(Change<ChatState> change) {
-    print(change);
-    super.onChange(change);
-  }
 }

@@ -6,11 +6,11 @@ import '../../../../../core/utils/custom_border.dart';
 import '../../view_model/change_password_icon_cubit/change_password_icon_cubit.dart';
 
 class CustomPasswordTextFormField extends StatelessWidget {
-  const CustomPasswordTextFormField({super.key, required this.labelText, this.onSaved});
+  const CustomPasswordTextFormField(
+      {super.key, required this.labelText, this.onSaved});
 
   final String labelText;
   final void Function(String?)? onSaved;
-
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +25,7 @@ class CustomPasswordTextFormField extends StatelessWidget {
             if (value?.isEmpty ?? true) {
               return 'يجب إدخال $labelText';
             }
+            return null;
           },
           onSaved: onSaved,
           textInputAction: TextInputAction.done,
